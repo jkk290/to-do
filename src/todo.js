@@ -8,7 +8,8 @@ export class Todo {
     }
 
     info() {
-        console.log(`ID: ${this.id}
+        console.log(
+            `ID: ${this.id}
             Title: ${this.title}
             Description: ${this.description}
             Due Date: ${this.dueDate}
