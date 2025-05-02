@@ -3,9 +3,10 @@ import { CheckListTodo } from "./checklistTodo";
 import { NoteTodo } from "./noteTodo";
 import myTodos from "./myTodos"
 
-export function createTodo(title, description, dueDate, priority, status, category) {
+export function createTodo(title, description, dueDate, priority, category) {
     let id = crypto.randomUUID();
-    let todo = new Todo(id, title, description, dueDate, priority, status, category);
+    let completed = false;
+    let todo = new Todo(id, title, description, dueDate, priority, completed, category);
 
     myTodos.push(todo);
 

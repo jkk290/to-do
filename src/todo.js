@@ -1,11 +1,11 @@
 export class Todo {    
-    constructor(id, title, description, dueDate, priority, status, category) {
+    constructor(id, title, description, dueDate, priority, completed, category) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.id = id;
-        this.status = status;
+        this.completed = completed;
         this.category = category;
     }
 
@@ -16,13 +16,17 @@ export class Todo {
             Description: ${this.description}
             Due Date: ${this.dueDate}
             Priority: ${this.priority}
-            Status: ${this.status}
+            Completed: ${this.completed}
             Category: ${this.category}`)
 
     }
 
     TodoId() {
         return this.id
+    }
+
+    completeTodo() {
+        return this.completed = true;
     }
 
 };
