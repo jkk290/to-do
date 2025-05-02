@@ -1,9 +1,9 @@
 import { Todo } from "./todo";
 
 export class ChecklistTodo extends Todo {
-    constructor(id, title, description, duedate, priority, checklist) {
+    constructor(id, title, description, dueDate, priority, status, category, checklist) {
 
-        super(id, title, description, duedate,priority);
+        super(id, title, description, dueDate, priority, status, category);
         this.checklist = checklist;
     }
 };
