@@ -17,4 +17,8 @@ export class Todo {
 
     }
 
+    TodoId() {
+        return this.id
+    }
+
 };
