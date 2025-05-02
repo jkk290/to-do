@@ -5,14 +5,16 @@ import { updateTitle } from "./updateTodoTitle";
 import { getTodoID } from "./getTodoID";
 import { markCompleted } from "./completeTodo";
 
-createTodo('Take out trash', 'empty all trash cans, and put can out on street', 'today 8pm', 'high');
+createTodo('Take out trash', 'Empty all trash cans, and put can out on street', 'today 8pm', 'high', 'chores');
+
+createTodo('Restart computer', 'Restart computer to apply updates', '5/2/2025 4pm', 'low');
 
 
 displayTodos();
 
 let thisId = getTodoID(0);
 
-updateTitle('do the trash',thisId);
+updateTitle('Do the trash',thisId);
 markCompleted(thisId);
 
 displayTodos();
