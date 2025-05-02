@@ -1,7 +1,7 @@
 import "./styles.css";
 import { createTodo } from "./todoFactory";
 import { displayTodos } from "./displayTodos";
-import { updateTitle } from "./updateTodoTitle";
+import { editTodo } from "./editTodo";
 import { getTodoID } from "./getTodoID";
 import { markCompleted } from "./completeTodo";
 import { deleteTodo } from "./deleteTodo";
@@ -19,7 +19,7 @@ displayTodos();
 
 let thisId = getTodoID(0);
 
-updateTitle('Do the trash',thisId);
+editTodo('Buy milk','get milk next grocery shopping', 'today 4pm', 'high', 'shopping', thisId);
 markCompleted(thisId);
 
 thisId = getTodoID(3);
