@@ -21,7 +21,7 @@ export class Todo {
 
     }
 
-    TodoId() {
+    todoId() {
         return this.id
     }
 
