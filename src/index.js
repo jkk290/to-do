@@ -4,10 +4,15 @@ import { displayTodos } from "./displayTodos";
 import { updateTitle } from "./updateTodoTitle";
 import { getTodoID } from "./getTodoID";
 import { markCompleted } from "./completeTodo";
+import { deleteTodo } from "./deleteTodo";
 
 createTodo('Take out trash', 'Empty all trash cans, and put can out on street', 'today 8pm', 'high', 'chores');
 
-createTodo('Restart computer', 'Restart computer to apply updates', '5/2/2025 4pm', 'low');
+createTodo('Restart computer', 'Restart computer to apply updates', '5/2/2025 4pm', 'low', 'misc');
+
+createTodo('Water plants', 'water front and back yards', '5/2/2025 4pm', 'med', 'chores');
+
+createTodo('test delete', 'testing delete function', '5/2/2025 4pm', 'med');
 
 
 displayTodos();
@@ -16,6 +21,9 @@ let thisId = getTodoID(0);
 
 updateTitle('Do the trash',thisId);
 markCompleted(thisId);
+
+thisId = getTodoID(3);
+deleteTodo(thisId)
 
 displayTodos();
 
