@@ -1,5 +1,3 @@
-import myTodos from "./myTodos";
-
-export function displayTodos() {
-    myTodos.forEach(todo => todo.info());
+export function displayTodos(todoArray) {
+    todoArray.forEach(todo => todo.info());
 };
