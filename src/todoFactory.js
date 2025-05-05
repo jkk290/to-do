@@ -1,21 +1,34 @@
 import { Todo } from "./todo";
-import { CheckListTodo } from "./checklistTodo";
+import { ChecklistTodo } from "./checklistTodo";
 import { NoteTodo } from "./noteTodo";
 import myTodos from "./myTodos";
 import { formatDate } from "./dateUtils.js";
 
-export function createTodo(title, description, dueDate, priority, category) {
+export function createTodo(title, description, dueDate, priority, category, note, checklist) {
     let id = crypto.randomUUID();
     let completed = false;
-    
+
     if (category == undefined) {
         category = 'uncategorized';
     }
 
     let formattedDate = formatDate(dueDate);
 
-    let todo = new Todo(id, title, description, formattedDate , priority, completed, category);
+    if ((checklist == undefined) && (note == undefined)) {
 
-    myTodos.push(todo);
+        let todo = new Todo(id, title, description, formattedDate , priority, completed, category);
+        myTodos.push(todo);
+
+    } else if (checklist != undefined) {
+
+        let checklistTodo = new ChecklistTodo(id, title, description, formattedDate , priority, completed, category, checklist);
+        myTodos.push(checklistTodo);
+
+    } else if (note != undefined) {
+        let noteTodo = new NoteTodo(id, title, description, formattedDate , priority, completed, category, note);
+        myTodos.push(noteTodo);
+    };
+
+
 
 };

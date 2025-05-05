@@ -8,7 +8,9 @@ import { deleteTodo } from "./deleteTodo";
 import myTodos from "./myTodos";
 import { categorizedTodo } from "./categorizeTodos";
 
-createTodo('Take out trash', 'Empty all trash cans, and put can out on street', '05/07/25', 'high', 'chores');
+createTodo('Take out trash', 'Empty all trash cans, and put can out on street', '05/07/25', 'high', 'chores', 'this a note');
+
+createTodo('My Checklist', 'This is a checklist', '05/07/25', 'high', 'chores', undefined , [1,2,3,4]);
 
 createTodo('Restart computer', 'Restart computer to apply updates', '05/02/2025', 'low', 'misc');
 
