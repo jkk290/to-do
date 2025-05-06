@@ -7,6 +7,9 @@ import { markCompleted } from "./completeTodo";
 import { deleteTodo } from "./deleteTodo";
 import myTodos from "./myTodos";
 import { categorizedTodo } from "./categorizeTodos";
+import * as storageUtils from "./storageUtils.js";
+
+storageUtils.loadMyTodos();
 
 createTodo('Take out trash', 'Empty all trash cans, and put can out on street', '05/07/25', 'high', 'chores', 'this a note');
 
@@ -19,6 +22,8 @@ createTodo('change lightbulb', 'Replace lightbulb in kitchen light', '05/06/2025
 createTodo('Water plants', 'water front and back yards', '05/02/2025', 'med', 'chores');
 
 createTodo('test delete', 'testing delete function', '2025/05/16', 'med');
+
+storageUtils.saveMyTodos();
 
 displayTodos(myTodos);
 
@@ -33,4 +38,15 @@ deleteTodo(thisId)
 let categorizedArray = categorizedTodo(myTodos, 'misc');
 
 displayTodos(categorizedArray);
+
+// console.log(myTodos);
+// console.log(storageUtils.myTodosString);
+// storageUtils.test;
+// console.log(storageUtils.getTest)
+
+// let myTodosString = JSON.stringify(myTodos);
+
+// console.log(myTodosString);
+
+// let testStorage = localStorage.setItem("myTodos", myTodosString);
 
