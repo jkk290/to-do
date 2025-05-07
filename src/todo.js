@@ -9,10 +9,6 @@ export class Todo {
         this.category = category;
     }
 
-    todoId() {
-        return this.id
-    }
-
     completeTodo() {
         return this.completed = true;
     }
