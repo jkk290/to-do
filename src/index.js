@@ -23,12 +23,14 @@ import * as storageUtils from "./storageUtils.js";
 
 // storageUtils.saveMyTodos(myTodos);
 
+let thisId = getTodoID(4);
+markCompleted(thisId);
 displayTodos();
 
-// let thisId = getTodoID(0);
+
 
 // editTodo('Buy milk','get milk next grocery shopping', 'today 4pm', 'high', 'shopping', thisId);
-// markCompleted(thisId);
+
 
 // thisId = getTodoID(5);
 // deleteTodo(thisId)

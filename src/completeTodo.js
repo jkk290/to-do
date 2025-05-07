@@ -5,5 +5,5 @@ export function markCompleted(id) {
         return i.id === id;
     });
 
-    myTodos[index].completeTodo();
+    myTodos[index].completed = true;
 }
