@@ -1,19 +1,19 @@
-import myTodos from "./myTodos";
-
 export function loadMyTodos() {      
     let myTodosString = localStorage.getItem('myTodos');  
 
     if (myTodosString != null) {
-        myTodos = JSON.parse(myTodosString);
+        let arrayString = JSON.parse(myTodosString);
 
-        return myTodos;
+        return arrayString;
+
     } else {
+
         return
 
     }
 };
 
-export function saveMyTodos() {
+export function saveMyTodos(myTodos) {
 
     let myTodosString = localStorage.getItem('myTodos');
 

@@ -9,7 +9,6 @@ import myTodos from "./myTodos";
 import { categorizedTodo } from "./categorizeTodos";
 import * as storageUtils from "./storageUtils.js";
 
-storageUtils.loadMyTodos();
 
 createTodo('Take out trash', 'Empty all trash cans, and put can out on street', '05/07/25', 'high', 'chores', 'this a note');
 
@@ -23,7 +22,7 @@ createTodo('Water plants', 'water front and back yards', '05/02/2025', 'med', 'c
 
 createTodo('test delete', 'testing delete function', '2025/05/16', 'med');
 
-storageUtils.saveMyTodos();
+storageUtils.saveMyTodos(myTodos);
 
 displayTodos(myTodos);
 
@@ -38,6 +37,8 @@ deleteTodo(thisId)
 let categorizedArray = categorizedTodo(myTodos, 'misc');
 
 displayTodos(categorizedArray);
+
+storageUtils.saveMyTodos(myTodos);
 
 // console.log(myTodos);
 // console.log(storageUtils.myTodosString);
