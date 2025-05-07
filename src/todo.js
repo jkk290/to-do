@@ -9,18 +9,6 @@ export class Todo {
         this.category = category;
     }
 
-    info() {
-        console.log(
-            `ID: ${this.id}
-            Title: ${this.title}
-            Description: ${this.description}
-            Due Date: ${this.dueDate}
-            Priority: ${this.priority}
-            Completed: ${this.completed}
-            Category: ${this.category}`)
-
-    }
-
     todoId() {
         return this.id
     }

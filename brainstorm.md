@@ -26,3 +26,5 @@ Check out localStorage npm library for persistent todo storage.
 
     delete todo flow - load mytodos array from web storage, find todo to delete in array, remove todo from array, json stringify the array, remove current mytodos key in web storage, set mytodostring to mytodos key in web storage.
 
+    Found that after parsing the json string back into an array, the original object methods are no longer available.  1 way to fix is to remove the methods from the class object, and create them as separate functions.
+
