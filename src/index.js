@@ -8,6 +8,14 @@ import { deleteTodo } from "./deleteTodo";
 import myTodos from "./myTodos";
 import { categorizedTodo } from "./categorizeTodos";
 import * as storageUtils from "./storageUtils.js";
+import { createAddButton } from "./frontend/addTodoButton.js";
+import { newTodoForm } from "./frontend/todoForm.js";
+
+
+createAddButton();
+newTodoForm();
+
+
 
 // createTodo('Take out trash', 'Empty all trash cans, and put can out on street', '05/07/25', 'high', 'chores', 'this a note');
 
@@ -23,10 +31,9 @@ import * as storageUtils from "./storageUtils.js";
 
 // storageUtils.saveMyTodos(myTodos);
 
-let thisId = getTodoID(4);
-markCompleted(thisId);
-displayTodos();
-
+// let thisId = getTodoID(4);
+// markCompleted(thisId);
+// displayTodos();
 
 
 // editTodo('Buy milk','get milk next grocery shopping', 'today 4pm', 'high', 'shopping', thisId);
