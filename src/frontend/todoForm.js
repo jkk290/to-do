@@ -1,3 +1,7 @@
+import { createTodo } from "../todoFactory.js";
+import myTodos from "../myTodos";
+import * as storageUtils from "../storageUtils.js";
+
 export function newTodoForm() {
     const body = document.querySelector('body');
 
@@ -26,6 +30,7 @@ export function newTodoForm() {
     dueDateLabel.textContent = 'Due Date';
     
     const priorityInput = document.createElement('select');
+    priorityInput.setAttribute('id', 'priority');
     const priorityLabel = document.createElement('label');
     priorityLabel.textContent = 'Priority';
     const priorityOptions = [
@@ -51,19 +56,38 @@ export function newTodoForm() {
     categoryLabel.textContent = 'Category';
 
     const formFields = [
-        { label: titleLabel, input: titleInput },
-        { label: descriptionLabel, input: descriptionInput },
-        { label: dueDateLabel, input: dueDateInput },
-        { label: priorityLabel, input: priorityInput },
-        { label: categoryLabel, input: categoryInput }
-      ];
+      { label: titleLabel, input: titleInput },
+      { label: descriptionLabel, input: descriptionInput },
+      { label: dueDateLabel, input: dueDateInput },
+      { label: priorityLabel, input: priorityInput },
+      { label: categoryLabel, input: categoryInput }
+    ];
       
-      formFields.forEach(field => {
-        newTodoForm.appendChild(field.label);
-        newTodoForm.appendChild(document.createElement('br'));
-        newTodoForm.appendChild(field.input);
-        newTodoForm.appendChild(document.createElement('br'));
-      });
+    formFields.forEach(field => {
+      newTodoForm.appendChild(field.label);
+      newTodoForm.appendChild(document.createElement('br'));
+      newTodoForm.appendChild(field.input);
+      newTodoForm.appendChild(document.createElement('br'));
+    });
+
+    const submitButton = document.createElement('button');
+    submitButton.setAttribute('type', 'submit');
+    submitButton.textContent = 'Create todo';
+
+    submitButton.addEventListener("click", function(e) {
+      e.preventDefault();
+
+      let titleValue = document.getElementById("title").value;
+      let descriptionValue = document.getElementById("description").value;
+      let dueDateValue = document.getElementById("dueDate").value;
+      let priorityValue = document.getElementById("priority").value;
+      let categoryValue = document.getElementById("category").value;
+      createTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue);
+      storageUtils.saveMyTodos(myTodos);
+      
+    });
+
+    newTodoForm.appendChild(submitButton);
 
     body.appendChild(newTodoForm);
 
