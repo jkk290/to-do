@@ -9,11 +9,9 @@ import myTodos from "./myTodos";
 import { categorizedTodo } from "./categorizeTodos";
 import * as storageUtils from "./storageUtils.js";
 import { createAddButton } from "./frontend/addTodoButton.js";
-import { newTodoForm } from "./frontend/todoForm.js";
 
 
 createAddButton();
-newTodoForm();
 
 
 

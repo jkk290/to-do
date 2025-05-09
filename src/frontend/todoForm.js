@@ -4,6 +4,16 @@ import * as storageUtils from "../storageUtils.js";
 
 export function newTodoForm() {
     const body = document.querySelector('body');
+    const todoDialog = document.createElement('dialog');
+    todoDialog.id = 'new-todo-dialog';
+    body.appendChild(todoDialog);
+
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'x';
+    closeButton.addEventListener('click', () => {
+      todoDialog.close();
+    });
+    todoDialog.appendChild(closeButton);
 
     const newTodoForm = document.createElement('form');
     newTodoForm.id = 'new-todo-form';
@@ -84,15 +94,16 @@ export function newTodoForm() {
       let categoryValue = document.getElementById("category").value;
       createTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue);
       storageUtils.saveMyTodos(myTodos);
-      
+      todoDialog.close();
+
     });
 
     newTodoForm.appendChild(submitButton);
 
-    body.appendChild(newTodoForm);
+    todoDialog.appendChild(newTodoForm);
 
 
-
+todoDialog.showModal();
     
 
 
