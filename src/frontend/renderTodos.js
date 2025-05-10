@@ -1,4 +1,5 @@
 import myTodos from "../myTodos";
+import { deleteTodo } from "../deleteTodo";
 
 export function renderTodos() {
 
@@ -17,6 +18,7 @@ export function renderTodos() {
     myTodos.forEach(todo => {
         const todoDiv = document.createElement('div');
         todoDiv.setAttribute('class', 'todo-div');
+        todoDiv.setAttribute('data-todo-id', todo.id);
         const todoTitle = document.createElement('h3');
         todoTitle.textContent = `${todo.title}`;
         const todoDescription = document.createElement('p');
@@ -33,6 +35,20 @@ export function renderTodos() {
         todoDiv.appendChild(todoDueDate);
         todoDiv.appendChild(todoPriority);
         todoDiv.appendChild(todoCategory);
+
+        let todoId = todo.id;
+        const deleteTodoButton = document.createElement('button');
+        deleteTodoButton.textContent = 'Delete';
+        deleteTodoButton.addEventListener('click', () => {
+            let removeDiv = deleteTodoButton.closest(`[data-todo-id="${todoId}"]`)
+
+            if (removeDiv){
+                removeDiv.remove();
+            }
+
+            deleteTodo(todoId);
+        });
+        todoDiv.appendChild(deleteTodoButton);
         todoContainer.appendChild(todoDiv);
     });
 
