@@ -1,13 +1,22 @@
 import myTodos from "../myTodos";
-import * as storageUtils from "../storageUtils";
 
 export function renderTodos() {
 
     const body = document.querySelector('body');
     const todoContainer = document.createElement('div');
+    todoContainer.id = 'todo-container';
+
+    const existingTodoContainer = document.getElementById('todo-container');
+
+    if (existingTodoContainer) {
+        existingTodoContainer.remove();
+    }
+
+    console.log(`rendering todos...${myTodos}`);
 
     myTodos.forEach(todo => {
         const todoDiv = document.createElement('div');
+        todoDiv.setAttribute('class', 'todo-div');
         const todoTitle = document.createElement('h3');
         todoTitle.textContent = `${todo.title}`;
         const todoDescription = document.createElement('p');
@@ -27,7 +36,6 @@ export function renderTodos() {
         todoContainer.appendChild(todoDiv);
     });
 
+
     body.appendChild(todoContainer)
-
-
 };

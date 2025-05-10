@@ -18,6 +18,7 @@ export function createTodo(title, description, dueDate, priority, category, note
 
         let todo = new Todo(id, title, description, formattedDate , priority, completed, category);
         myTodos.push(todo);
+        console.log(`Todo created! ${myTodos}`);
 
     } else if (checklist != undefined) {
 

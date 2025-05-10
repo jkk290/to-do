@@ -1,10 +1,13 @@
 export function loadMyTodos() {      
     let myTodosString = localStorage.getItem('myTodos');  
 
-    if (myTodosString != null) {
-        let arrayString = JSON.parse(myTodosString);
+    console.log(`Retrieving from local storage...${myTodosString}`);
 
-        return arrayString;
+    if (myTodosString != null) {
+        let array = JSON.parse(myTodosString);
+        console.log(`Parsing string...`);
+        console.log(array);
+        return array;
 
     } else {
 
