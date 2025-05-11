@@ -11,27 +11,17 @@ export function loadMyTodos() {
 
     } else {
 
-        return
+        return [];
 
     }
 };
 
 export function saveMyTodos(myTodos) {
 
-    let myTodosString = localStorage.getItem('myTodos');
-
     let jsonString = JSON.stringify(myTodos);
-
-    if (myTodosString != null) {
-        localStorage.removeItem('myTodos');
-
-        localStorage.setItem('myTodos', jsonString);
+    console.log(`Saving to storage...${jsonString}`);
+    localStorage.setItem('myTodos', jsonString);
         
-    } else {
-
-        localStorage.setItem('myTodos', jsonString);
-        
-    }
 
 };
 

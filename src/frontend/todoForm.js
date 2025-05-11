@@ -96,7 +96,8 @@ export function newTodoForm() {
     createTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue);
 
     storageUtils.saveMyTodos(myTodos);
-    todoDialog.close();
+    // todoDialog.close();
+    todoDialog.remove();
     renderTodos();
 
   });

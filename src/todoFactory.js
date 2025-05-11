@@ -4,13 +4,9 @@ import { NoteTodo } from "./noteTodo";
 import myTodos from "./myTodos";
 import { formatDate } from "./dateUtils.js";
 
-export function createTodo(title, description, dueDate, priority, category, note, checklist) {
+export function createTodo(title, description, dueDate, priority, category = 'uncategoried', note, checklist) {
     let id = crypto.randomUUID();
     let completed = false;
-
-    if (category == undefined) {
-        category = 'uncategorized';
-    }
 
     let formattedDate = formatDate(dueDate);
 
@@ -18,7 +14,7 @@ export function createTodo(title, description, dueDate, priority, category, note
 
         let todo = new Todo(id, title, description, formattedDate , priority, completed, category);
         myTodos.push(todo);
-        console.log(`Todo created! ${myTodos}`);
+        console.log(`Todo created! ${todo}`);
 
     } else if (checklist != undefined) {
 
