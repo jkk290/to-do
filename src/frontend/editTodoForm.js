@@ -1,23 +1,26 @@
-import { createTodo } from "../todoFactory.js";
 import myTodos from "../myTodos";
+import { editTodo } from "../editTodo.js";
 import * as storageUtils from "../storageUtils.js";
 import { renderTodos } from "./renderTodos.js";
 
-export function newTodoForm() {
+export function editTodoForm() {
   const body = document.querySelector('body');
-  const todoDialog = document.createElement('dialog');
-  todoDialog.id = 'new-todo-dialog';
-  body.appendChild(todoDialog);
+  const editTodoDialog = document.createElement('dialog');
+  editTodoDialog.id = 'edit-todo-dialog';
+  body.appendChild(editTodoDialog);
 
   const closeButton = document.createElement('button');
   closeButton.textContent = 'x';
   closeButton.addEventListener('click', () => {
-    todoDialog.close();
+    editTodoDialog.close();
   });
-  todoDialog.appendChild(closeButton);
+  editTodoDialog.appendChild(closeButton);
 
-  const newTodoForm = document.createElement('form');
-  newTodoForm.id = 'new-todo-form';
+  const editTodoForm = document.createElement('form');
+  editTodoForm.id = 'edit-todo-form';
+
+
+  let editTodoId = 
 
   const titleInput = document.createElement('input');
   titleInput.setAttribute('type', 'text');
@@ -75,10 +78,10 @@ export function newTodoForm() {
   ];
     
   formFields.forEach(field => {
-    newTodoForm.appendChild(field.label);
-    newTodoForm.appendChild(document.createElement('br'));
-    newTodoForm.appendChild(field.input);
-    newTodoForm.appendChild(document.createElement('br'));
+    editTodoForm.appendChild(field.label);
+    editTodoForm.appendChild(document.createElement('br'));
+    editTodoForm.appendChild(field.input);
+    editTodoForm.appendChild(document.createElement('br'));
   });
 
   const submitButton = document.createElement('button');
@@ -96,19 +99,16 @@ export function newTodoForm() {
     createTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue);
 
     storageUtils.saveMyTodos(myTodos);
-    todoDialog.remove();
+    editTodoDialog.remove();
     renderTodos();
 
   });
 
-  newTodoForm.appendChild(submitButton);
+  editTodoForm.appendChild(submitButton);
 
-  todoDialog.appendChild(newTodoForm);
+  editTodoDialog.appendChild(editTodoForm);
 
 
-  todoDialog.showModal();
+  editTodoDialog.showModal();
     
-
-
-
 };
