@@ -1,9 +1,9 @@
 import myTodos from "./myTodos";
+import { getTodoIndex } from "./getTodoIndex";
 
 export function editTodo(newTitle, newDescription, newDueDate, newPriority, newCategory, id) {
-    const index = myTodos.findIndex((i) => {
-        return i.id === id;
-    });
+    
+    let index = getTodoIndex(id);
 
     myTodos[index].title = newTitle;
     myTodos[index].description = newDescription;

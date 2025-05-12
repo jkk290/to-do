@@ -1,5 +1,6 @@
 import myTodos from "../myTodos";
 import { deleteTodo } from "../deleteTodo";
+import { editTodoForm } from "./editTodoForm";
 
 export function renderTodos() {
 
@@ -36,7 +37,15 @@ export function renderTodos() {
         todoDiv.appendChild(todoPriority);
         todoDiv.appendChild(todoCategory);
 
+
         let todoId = todo.id;
+
+        const editTodoButton = document.createElement('button');
+        editTodoButton.textContent = 'Edit';
+        editTodoButton.addEventListener('click', () =>{
+            editTodoForm(todoId);
+        });
+
         const deleteTodoButton = document.createElement('button');
         deleteTodoButton.textContent = 'Delete';
         deleteTodoButton.addEventListener('click', () => {
@@ -48,6 +57,8 @@ export function renderTodos() {
 
             deleteTodo(todoId);
         });
+
+        todoDiv.appendChild(editTodoButton);
         todoDiv.appendChild(deleteTodoButton);
         todoContainer.appendChild(todoDiv);
     });

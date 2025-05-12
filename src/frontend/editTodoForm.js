@@ -2,8 +2,9 @@ import myTodos from "../myTodos";
 import { editTodo } from "../editTodo.js";
 import * as storageUtils from "../storageUtils.js";
 import { renderTodos } from "./renderTodos.js";
+import { getTodoIndex } from "../getTodoIndex.js";
 
-export function editTodoForm() {
+export function editTodoForm(id) {
   const body = document.querySelector('body');
   const editTodoDialog = document.createElement('dialog');
   editTodoDialog.id = 'edit-todo-dialog';
@@ -20,31 +21,37 @@ export function editTodoForm() {
   editTodoForm.id = 'edit-todo-form';
 
 
-  let editTodoId = 
+  let editTodoId = id;
+
+  let index = getTodoIndex(editTodoId);
 
   const titleInput = document.createElement('input');
-  titleInput.setAttribute('type', 'text');
-  titleInput.setAttribute('id', 'title');
-  titleInput.setAttribute('name', 'title');
+  titleInput.type = 'text';
+  titleInput.id = 'title';
+  titleInput.name = 'title';
+  titleInput.value = myTodos[index].title;
   const titleLabel = document.createElement('label');
   titleLabel.textContent = 'Title';
 
   const descriptionInput = document.createElement('textarea');
-  descriptionInput.setAttribute('type', 'textarea');
-  descriptionInput.setAttribute('id', 'description');
-  descriptionInput.setAttribute('name', 'description');
+  descriptionInput.setAttribute ('type', 'textarea');
+//   descriptionInput.type = 'textarea';
+  descriptionInput.id = 'description';
+  descriptionInput.name = 'description';
+  descriptionInput.value = myTodos[index].description;
   const descriptionLabel = document.createElement('label');
   descriptionLabel.textContent = 'Description';
   
   const dueDateInput = document.createElement('input');
-  dueDateInput.setAttribute('type', 'date');
-  dueDateInput.setAttribute('id', 'dueDate');
-  dueDateInput.setAttribute('name', 'dueDate');
+  dueDateInput.type = 'date';
+  dueDateInput.id = 'dueDate';
+  dueDateInput.name = 'dueDate';
+  dueDateInput.value = myTodos[index].dueDate;
   const dueDateLabel = document.createElement('label');
   dueDateLabel.textContent = 'Due Date';
   
   const priorityInput = document.createElement('select');
-  priorityInput.setAttribute('id', 'priority');
+  priorityInput.id = 'priority';
   const priorityLabel = document.createElement('label');
   priorityLabel.textContent = 'Priority';
   const priorityOptions = [
@@ -61,11 +68,14 @@ export function editTodoForm() {
       priorityInput.appendChild(option);
   });
 
+  priorityInput.value = myTodos[index].priority;
+
   
   const categoryInput = document.createElement('input');
-  categoryInput.setAttribute('type', 'text');
-  categoryInput.setAttribute('id', 'category');
-  categoryInput.setAttribute('name', 'category');
+  categoryInput.type = 'text';
+  categoryInput.id = 'category';
+  categoryInput.name = 'category';
+  categoryInput.value = myTodos[index].category;
   const categoryLabel = document.createElement('label');
   categoryLabel.textContent = 'Category';
 
@@ -96,7 +106,7 @@ export function editTodoForm() {
     let dueDateValue = document.getElementById("dueDate").value;
     let priorityValue = document.getElementById("priority").value;
     let categoryValue = document.getElementById("category").value;
-    createTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue);
+    editTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue, editTodoId);
 
     storageUtils.saveMyTodos(myTodos);
     editTodoDialog.remove();
