@@ -1,3 +1,4 @@
+import { newNoteTodoForm } from "./noteTodoForm";
 import { newTodoForm } from "./todoForm";
 
 export function formSelector() {
@@ -47,9 +48,11 @@ export function formSelector() {
 
         let formSelectorValue = document.getElementById("select-form").value;
         selectedFormDiv.innerHTML = '';
-        
+
         if (formSelectorValue === 'standard') {
             newTodoForm();
+        } else if (formSelectorValue === 'note') {
+            newNoteTodoForm();
         }
     });
 

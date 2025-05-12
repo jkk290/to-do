@@ -4,7 +4,7 @@ import { NoteTodo } from "./noteTodo";
 import myTodos from "./myTodos";
 import { formatDate } from "./dateUtils.js";
 
-export function createTodo(title, description, dueDate, priority, category = 'uncategoried', note, checklist) {
+export function createTodo(title, description, dueDate, priority, category = 'uncategorized', note, checklist) {
     let id = crypto.randomUUID();
     let completed = false;
 

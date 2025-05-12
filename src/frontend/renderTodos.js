@@ -37,6 +37,12 @@ export function renderTodos() {
         todoDiv.appendChild(todoPriority);
         todoDiv.appendChild(todoCategory);
 
+        if (todo.note != undefined) {            
+            const todoNote = document.createElement('p');
+            todoNote.textContent = `Notes: ${todo.note}`;
+            todoDiv.appendChild(todoNote);
+        }
+
 
         let todoId = todo.id;
 
