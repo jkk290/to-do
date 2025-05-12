@@ -4,17 +4,9 @@ import * as storageUtils from "../storageUtils.js";
 import { renderTodos } from "./renderTodos.js";
 
 export function newTodoForm() {
-  const body = document.querySelector('body');
-  const todoDialog = document.createElement('dialog');
-  todoDialog.id = 'new-todo-dialog';
-  body.appendChild(todoDialog);
 
-  const closeButton = document.createElement('button');
-  closeButton.textContent = 'x';
-  closeButton.addEventListener('click', () => {
-    todoDialog.close();
-  });
-  todoDialog.appendChild(closeButton);
+  const selectedFormDialog = document.getElementById('select-form-dialog');
+  const selectedFormDiv = document.getElementById('selected-form');
 
   const newTodoForm = document.createElement('form');
   newTodoForm.id = 'new-todo-form';
@@ -96,17 +88,14 @@ export function newTodoForm() {
     createTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue);
 
     storageUtils.saveMyTodos(myTodos);
-    todoDialog.remove();
+    selectedFormDialog.remove();
     renderTodos();
 
   });
 
   newTodoForm.appendChild(submitButton);
 
-  todoDialog.appendChild(newTodoForm);
-
-
-  todoDialog.showModal();
+  selectedFormDiv.appendChild(newTodoForm);
     
 
 

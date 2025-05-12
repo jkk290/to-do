@@ -14,7 +14,6 @@ import { formSelector } from "./frontend/todoFormSelector.js";
 
 
 createAddButton();
-formSelector();
 renderTodos();
 
 

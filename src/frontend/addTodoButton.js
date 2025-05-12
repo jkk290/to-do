@@ -1,4 +1,4 @@
-import { newTodoForm } from "./todoForm";
+import { formSelector } from "./todoFormSelector";
 
 export function createAddButton() {
 
@@ -8,7 +8,7 @@ const addButton = document.createElement('button');
 addButton.textContent = 'New Todo';
 
 addButton.addEventListener('click', () => {
-    newTodoForm()
+    formSelector();
 });
 
 body.appendChild(addButton);

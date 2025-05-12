@@ -10,7 +10,7 @@ export function formSelector() {
     const closeButton = document.createElement('button');
     closeButton.textContent = 'x';
     closeButton.addEventListener('click', () => {
-        selectFormDialog.close();
+        selectFormDialog.remove();
     });
 
     selectFormDialog.appendChild(closeButton);
@@ -36,12 +36,18 @@ export function formSelector() {
     selectFormDialog.appendChild(formSelectorLabel);
     selectFormDialog.appendChild(formSelector);
 
-    selectFormDialog.show();
+    selectFormDialog.showModal();
+
+    const selectedFormDiv = document.createElement('div');
+    selectedFormDiv.id = ('selected-form')
+    selectFormDialog.appendChild(selectedFormDiv);
+    newTodoForm();
 
     formSelector.addEventListener('change', () => {
 
         let formSelectorValue = document.getElementById("select-form").value;
-
+        selectedFormDiv.innerHTML = '';
+        
         if (formSelectorValue === 'standard') {
             newTodoForm();
         }
