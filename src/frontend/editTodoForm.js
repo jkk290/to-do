@@ -96,7 +96,7 @@ export function editTodoForm(id) {
 
   const submitButton = document.createElement('button');
   submitButton.setAttribute('type', 'submit');
-  submitButton.textContent = 'Create todo';
+  submitButton.textContent = 'Save changes';
 
   submitButton.addEventListener("click", function(e) {
     e.preventDefault();
