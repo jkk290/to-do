@@ -13,7 +13,7 @@ export function editTodoForm(id) {
   const closeButton = document.createElement('button');
   closeButton.textContent = 'x';
   closeButton.addEventListener('click', () => {
-    editTodoDialog.close();
+    editTodoDialog.remove();
   });
   editTodoDialog.appendChild(closeButton);
 
@@ -35,7 +35,6 @@ export function editTodoForm(id) {
 
   const descriptionInput = document.createElement('textarea');
   descriptionInput.setAttribute ('type', 'textarea');
-//   descriptionInput.type = 'textarea';
   descriptionInput.id = 'description';
   descriptionInput.name = 'description';
   descriptionInput.value = myTodos[index].description;
@@ -94,6 +93,54 @@ export function editTodoForm(id) {
     editTodoForm.appendChild(document.createElement('br'));
   });
 
+  if (myTodos[index].note != undefined) {
+    const noteInput = document.createElement('textarea');
+    noteInput.setAttribute('type', 'textarea');
+    noteInput.id = 'note';
+    noteInput.name = 'note';
+    noteInput.value = myTodos[index].note;
+    const noteLabel = document.createElement('label');
+    noteLabel.textContent = 'Notes';
+    editTodoForm.appendChild(noteLabel);
+    editTodoForm.appendChild(document.createElement('br'));
+    editTodoForm.appendChild(noteInput);
+    editTodoForm.appendChild(document.createElement('br'));
+  };
+
+  if (myTodos[index].checklist != undefined) {
+
+    const checklistLabel = document.createElement('label');
+    checklistLabel.textContent = 'Checklist';
+    editTodoForm.appendChild(checklistLabel);
+    
+    const checklistContainer = document.createElement('div');
+    editTodoForm.appendChild(checklistContainer);
+
+    myTodos[index].checklist.forEach(item => {
+      const checklistItem = document.createElement('input');
+      checklistItem.classList = 'checklist-input';
+      checklistItem.name = 'checklist';
+      checklistItem.value = item;
+      checklistContainer.appendChild(checklistItem);
+      checklistContainer.appendChild(document.createElement('br'));
+    });
+
+    const addChecklistItemButton = document.createElement('button');
+    addChecklistItemButton.textContent = 'Add new item';
+
+    addChecklistItemButton.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const newChecklistInput = document.createElement('input');
+      newChecklistInput.type = 'text';    
+      newChecklistInput.classList = 'checklist-input';
+      checklistContainer.appendChild(newChecklistInput);      
+      checklistContainer.appendChild(document.createElement('br'));    
+    });
+
+    editTodoForm.appendChild(addChecklistItemButton);
+  };
+
   const submitButton = document.createElement('button');
   submitButton.setAttribute('type', 'submit');
   submitButton.textContent = 'Save changes';
@@ -106,7 +153,25 @@ export function editTodoForm(id) {
     let dueDateValue = document.getElementById("dueDate").value;
     let priorityValue = document.getElementById("priority").value;
     let categoryValue = document.getElementById("category").value;
-    editTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue, editTodoId);
+
+    const checklistInputs = document.querySelectorAll('.checklist-input');
+    const checklistArray = [];
+
+    checklistInputs.forEach(input => {
+        checklistArray.push(input.value);
+    });
+
+    if (document.getElementById("note")) {
+      let noteValue = document.getElementById("note").value;
+      editTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue, noteValue, undefined, editTodoId);
+
+    } else if (checklistArray != undefined) {
+      editTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue, undefined, checklistArray, editTodoId);
+
+    } else {
+      editTodo(titleValue, descriptionValue, dueDateValue, priorityValue, categoryValue, editTodoId);
+
+    }
 
     storageUtils.saveMyTodos(myTodos);
     editTodoDialog.remove();

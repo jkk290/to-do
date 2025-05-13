@@ -67,6 +67,7 @@ export function newChecklistTodoForm() {
   checklistInput.type = 'text';
   checklistInput.classList = 'checklist-input';
   checklistContainer.appendChild(checklistLabel);
+  checklistContainer.appendChild(document.createElement('br'));
   checklistContainer.appendChild(checklistInput);
 
   const addChecklistItemButton = document.createElement('button');
@@ -77,6 +78,7 @@ export function newChecklistTodoForm() {
     const newChecklistInput = document.createElement('input');
     newChecklistInput.type = 'text';    
     newChecklistInput.classList = 'checklist-input';
+    checklistContainer.appendChild(document.createElement('br'));
     checklistContainer.appendChild(newChecklistInput);    
   });
 
