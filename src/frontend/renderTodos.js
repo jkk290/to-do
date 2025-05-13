@@ -41,7 +41,24 @@ export function renderTodos() {
             const todoNote = document.createElement('p');
             todoNote.textContent = `Notes: ${todo.note}`;
             todoDiv.appendChild(todoNote);
+        } else if (todo.checklist != undefined) {                        
+            const todoChecklist = document.createElement('ul');
+            todo.checklist.forEach(function(item, index) {
+                const checklistItem = document.createElement('input');
+                checklistItem.type = 'checkbox';
+                checklistItem.name = 'checklist';
+                checklistItem.setAttribute('data-index', index);
+                todoChecklist.appendChild(checklistItem);
+                const checklistItemLabel = document.createElement('label');
+                checklistItemLabel.textContent = item;
+                todoChecklist.appendChild(checklistItemLabel);
+                todoChecklist.appendChild(document.createElement('br'));
+            });
+            
+            todoDiv.appendChild(todoChecklist);
         }
+
+        
 
 
         let todoId = todo.id;

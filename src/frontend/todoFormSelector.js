@@ -1,4 +1,5 @@
 import { newNoteTodoForm } from "./noteTodoForm";
+import { newChecklistTodoForm } from "./checklistTodoForm";
 import { newTodoForm } from "./todoForm";
 
 export function formSelector() {
@@ -53,6 +54,8 @@ export function formSelector() {
             newTodoForm();
         } else if (formSelectorValue === 'note') {
             newNoteTodoForm();
+        } else if (formSelectorValue === 'checklist') {
+            newChecklistTodoForm();
         }
     });
 
