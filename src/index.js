@@ -11,9 +11,11 @@ import * as storageUtils from "./storageUtils.js";
 import { createAddButton } from "./frontend/addTodoButton.js";
 import { renderTodos } from "./frontend/renderTodos.js";
 import { formSelector } from "./frontend/todoFormSelector.js";
+import { selectTodoDisplay } from "./frontend/todoDisplaySelector.js";
 
 
 createAddButton();
+selectTodoDisplay();
 renderTodos();
 
 
