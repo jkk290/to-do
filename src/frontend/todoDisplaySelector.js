@@ -1,4 +1,6 @@
 import myTodos from "../myTodos";
+import { categorizedTodo } from "../categorizeTodos";
+import { renderTodos } from "./renderTodos";
 
 export function selectTodoDisplay() {
     const body = document.querySelector('body');
@@ -8,10 +10,20 @@ export function selectTodoDisplay() {
     const categorySelectorLabel = document.createElement('label');
     categorySelectorLabel.textContent = 'Filter by category';
 
-    const categoryOptions = [];
+    const categoryOptions = [{ value: 'all', text: 'All' }];
+    const trackCategories = [];
 
     myTodos.forEach(todo => {
-        categoryOptions.push({ value: todo.category, text: todo.category });
+
+        const normalizedCategory = todo.category.toLowerCase();
+    
+   
+        if (!trackCategories.includes(normalizedCategory)) {
+      
+            trackCategories.push(normalizedCategory);
+            categoryOptions.push({ value: todo.category, text: todo.category });
+        };
+
     });
     
     console.log('Fetching category options...');
@@ -26,5 +38,18 @@ export function selectTodoDisplay() {
 
     body.appendChild(categorySelectorLabel);
     body.appendChild(categorySelector);
+
+    categorySelector.addEventListener('change', () => {
+    
+            let categorySelectorValue = document.getElementById("select-category").value;
+
+            if (categorySelectorValue === 'all') {
+                renderTodos(myTodos);
+            } else {
+                let filteredTodos = categorizedTodo(myTodos, categorySelectorValue);
+                renderTodos(filteredTodos);
+            }
+
+        });
 
 };

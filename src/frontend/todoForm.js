@@ -89,7 +89,7 @@ export function newTodoForm() {
 
     storageUtils.saveMyTodos(myTodos);
     selectedFormDialog.remove();
-    renderTodos();
+    renderTodos(myTodos);
 
   });
 

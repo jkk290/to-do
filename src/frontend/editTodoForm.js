@@ -175,7 +175,7 @@ export function editTodoForm(id) {
 
     storageUtils.saveMyTodos(myTodos);
     editTodoDialog.remove();
-    renderTodos();
+    renderTodos(myTodos);
 
   });
 

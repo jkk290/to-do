@@ -1,8 +1,8 @@
-import myTodos from "../myTodos";
+// import filteredTodos from "../filteredTodos";
 import { deleteTodo } from "../deleteTodo";
 import { editTodoForm } from "./editTodoForm";
 
-export function renderTodos() {
+export function renderTodos(filteredTodos) {
 
     const body = document.querySelector('body');
     const todoContainer = document.createElement('div');
@@ -14,9 +14,9 @@ export function renderTodos() {
         existingTodoContainer.remove();
     }
 
-    console.log(`rendering todos...${myTodos}`);
+    console.log(`rendering todos...${filteredTodos}`);
 
-    myTodos.forEach(todo => {
+    filteredTodos.forEach(todo => {
         const todoDiv = document.createElement('div');
         todoDiv.setAttribute('class', 'todo-div');
         todoDiv.setAttribute('data-todo-id', todo.id);

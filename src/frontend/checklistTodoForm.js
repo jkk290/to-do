@@ -128,7 +128,7 @@ export function newChecklistTodoForm() {
 
     storageUtils.saveMyTodos(myTodos);
     selectedFormDialog.remove();
-    renderTodos();
+    renderTodos(MyTodos);
 
   });
 
