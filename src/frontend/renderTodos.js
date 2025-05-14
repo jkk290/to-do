@@ -1,6 +1,7 @@
 // import filteredTodos from "../filteredTodos";
 import { deleteTodo } from "../deleteTodo";
 import { editTodoForm } from "./editTodoForm";
+import { markCompleted } from "../completeTodo";
 
 export function renderTodos(filteredTodos) {
 
@@ -22,6 +23,8 @@ export function renderTodos(filteredTodos) {
         todoDiv.setAttribute('data-todo-id', todo.id);
         const todoTitle = document.createElement('h3');
         todoTitle.textContent = `${todo.title}`;
+
+
         const todoDescription = document.createElement('p');
         todoDescription.textContent =  `${todo.description}`;
         const todoDueDate = document.createElement('p');
@@ -32,6 +35,11 @@ export function renderTodos(filteredTodos) {
         todoCategory.textContent =  `Category: ${todo.category}`;
 
         todoDiv.appendChild(todoTitle);
+        if (todo.completed) {
+            const todoCompleted = document.createElement('h4');
+            todoCompleted.textContent = 'Completed!';
+            todoDiv.appendChild(todoCompleted);
+        }
         todoDiv.appendChild(todoDescription);
         todoDiv.appendChild(todoDueDate);
         todoDiv.appendChild(todoPriority);
@@ -63,6 +71,14 @@ export function renderTodos(filteredTodos) {
 
         let todoId = todo.id;
 
+        const completeTodoButton = document.createElement('button');
+        completeTodoButton.textContent = 'Complete';
+        completeTodoButton.addEventListener('click', () => {         
+            markCompleted(todoId);
+            renderTodos(filteredTodos);
+            
+        });
+
         const editTodoButton = document.createElement('button');
         editTodoButton.textContent = 'Edit';
         editTodoButton.addEventListener('click', () =>{
@@ -72,7 +88,7 @@ export function renderTodos(filteredTodos) {
         const deleteTodoButton = document.createElement('button');
         deleteTodoButton.textContent = 'Delete';
         deleteTodoButton.addEventListener('click', () => {
-            let removeDiv = deleteTodoButton.closest(`[data-todo-id="${todoId}"]`)
+            let removeDiv = deleteTodoButton.closest(`[data-todo-id="${todoId}"]`);
 
             if (removeDiv){
                 removeDiv.remove();
@@ -81,6 +97,7 @@ export function renderTodos(filteredTodos) {
             deleteTodo(todoId);
         });
 
+        todoDiv.appendChild(completeTodoButton);
         todoDiv.appendChild(editTodoButton);
         todoDiv.appendChild(deleteTodoButton);
         todoContainer.appendChild(todoDiv);

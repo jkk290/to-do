@@ -1,4 +1,5 @@
 import myTodos from "./myTodos";
+import { saveMyTodos } from "./storageUtils";
 
 export function markCompleted(id) {
     const index = myTodos.findIndex((i) => {
@@ -6,4 +7,5 @@ export function markCompleted(id) {
     });
 
     myTodos[index].completed = true;
+    saveMyTodos(myTodos);
 }
