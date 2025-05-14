@@ -5,8 +5,8 @@ import { renderTodos } from "./frontend/renderTodos.js";
 import { selectTodoDisplay } from "./frontend/todoDisplaySelector.js";
 
 
-createAddButton();
 selectTodoDisplay();
+createAddButton();
 renderTodos(myTodos);
 
 
