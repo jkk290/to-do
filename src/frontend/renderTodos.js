@@ -1,7 +1,7 @@
-// import filteredTodos from "../filteredTodos";
 import { deleteTodo } from "../deleteTodo";
 import { editTodoForm } from "./editTodoForm";
 import { markCompleted } from "../completeTodo";
+import { saveMyTodos } from "../storageUtils";
 
 export function renderTodos(filteredTodos) {
 
@@ -52,21 +52,48 @@ export function renderTodos(filteredTodos) {
         } else if (todo.checklist != undefined) {                        
             const todoChecklist = document.createElement('ul');
             todo.checklist.forEach(function(item, index) {
+                const listItem = document.createElement('li');
                 const checklistItem = document.createElement('input');
                 checklistItem.type = 'checkbox';
                 checklistItem.name = 'checklist';
                 checklistItem.setAttribute('data-index', index);
-                todoChecklist.appendChild(checklistItem);
+
+                checklistItem.checked = item.completed;                  
+                    
+                if (item.completed) {
+                    listItem.classList.add('completed');    }
+
+                listItem.appendChild(checklistItem);
                 const checklistItemLabel = document.createElement('label');
-                checklistItemLabel.textContent = item;
-                todoChecklist.appendChild(checklistItemLabel);
-                todoChecklist.appendChild(document.createElement('br'));
+                checklistItemLabel.textContent = item.value;
+                listItem.appendChild(checklistItemLabel);
+                listItem.appendChild(document.createElement('br'));
+                todoChecklist.appendChild(listItem);
+            });
+
+            todoChecklist.currentTodo = todo;
+
+            todoChecklist.addEventListener('change', (e) => {
+                if (e.target.type === 'checkbox') {
+                    const listItem = e.target.closest('li');
+
+                    const itemIndex = parseInt(e.target.getAttribute('data-index'));
+                    const currentTodo = e.currentTarget.currentTodo;
+                    
+                    if (e.target.checked) {
+                        listItem.classList.add('completed');
+                        currentTodo.checklist[itemIndex].completed = true;
+                    } else {
+                        listItem.classList.remove('completed');
+                        currentTodo.checklist[itemIndex].completed = false;
+                    }
+
+                    saveMyTodos(filteredTodos);
+                }
             });
             
             todoDiv.appendChild(todoChecklist);
-        }
-
-        
+        }     
 
 
         let todoId = todo.id;

@@ -119,7 +119,7 @@ export function newChecklistTodoForm() {
     const checklistArray = [];
 
     checklistInputs.forEach(input => {
-        checklistArray.push(input.value);
+        checklistArray.push({ value: input.value, completed: false });
     });
 
     console.log(`creating checklist array...`);
@@ -128,7 +128,7 @@ export function newChecklistTodoForm() {
 
     storageUtils.saveMyTodos(myTodos);
     selectedFormDialog.remove();
-    renderTodos(MyTodos);
+    renderTodos(myTodos);
 
   });
 
